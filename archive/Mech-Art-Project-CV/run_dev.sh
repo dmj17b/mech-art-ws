@@ -11,7 +11,6 @@ docker build -t mechart-cv:latest "${SCRIPT_DIR}"
 # Start the Docker container
 docker run -it \
     --rm \
-    --gpus all \
     -p 5000:5000 \
     -e DISPLAY=$DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \

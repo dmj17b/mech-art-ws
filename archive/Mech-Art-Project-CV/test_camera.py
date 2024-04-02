@@ -3,6 +3,10 @@ import cv2
 def test_camera_feed():
     # Initialize the video capture object. 0 is the ID of the built-in camera, change if you have multiple cameras.
     cap = cv2.VideoCapture(0)
+    cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M','J','P','G'))
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+    cap.set(cv2.CAP_PROP_FPS, 30)
 
     if not cap.isOpened():
         print("Error: Could not open video device.")

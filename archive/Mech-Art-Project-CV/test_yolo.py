@@ -1,8 +1,8 @@
 import cv2
 import numpy as np
 
-WEIGHTS_PATH = "yolov3-tiny.weights"
-CONFIG_PATH = "yolov3-tiny.cfg"
+WEIGHTS_PATH = "yolov3.weights"
+CONFIG_PATH = "yolov3.cfg"
 
 # Load YOLO
 net = cv2.dnn.readNet(WEIGHTS_PATH, CONFIG_PATH)
@@ -17,6 +17,10 @@ person_class_id = classes.index("person")  # Get the index for 'person'
 
 # Initialize video
 cap = cv2.VideoCapture(0)  # Use 0 for webcam
+cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M','J','P','G'))
+cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+cap.set(cv2.CAP_PROP_FPS, 30)
 
 while True:
     _, frame = cap.read()

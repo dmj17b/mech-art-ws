@@ -10,7 +10,8 @@ RUN apt-get update && \
         libgl1-mesa-glx \
         libglib2.0-0 \
         libqt5x11extras5 \
-        libx11-xcb1
+        libx11-xcb1 \
+        v4l-utils
 
 # Install OpenCV with GUI support
 RUN pip3 install \

@@ -11,7 +11,6 @@ docker build -t mechart:latest "${SCRIPT_DIR}"
 # Start the Docker container
 docker run -it \
     --rm \
-    --gpus all \
     -p 5000:5000 \
     -e "OPENAI_API_KEY=$(cat openai-key.txt)" \
     -e DISPLAY=$DISPLAY \

@@ -26,6 +26,11 @@ def get_room_corners_from_video(video_source=0):
     points = []  # Reset points for each function call
 
     cap = cv2.VideoCapture(video_source)
+    cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M','J','P','G'))
+    cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+    cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+    cap.set(cv2.CAP_PROP_FPS, 30)
+    
     cv2.namedWindow("Video")
     cv2.setMouseCallback("Video", click_event)
 
