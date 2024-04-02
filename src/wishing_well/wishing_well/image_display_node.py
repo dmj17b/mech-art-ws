@@ -6,6 +6,7 @@ from std_msgs.msg import String
 import threading
 import requests
 import queue
+import time
 from flask import Flask, Response, render_template_string
 
 app = Flask(__name__)
@@ -30,16 +31,23 @@ class ImageDisplayNode(Node):
 def gen_frames():
     while True:
 
-      image_url = image_url_queue.get_nowait()
-      image_url_queue.put(image_url)
+        if image_url_queue.empty():
+            yield (b'--frame\r\n'
+                    b'Content-Type: image/png\r\n\r\n' + b'\r\n')
+            time.sleep(1)
+            continue
 
-      response = requests.get(image_url)
-      if response.status_code == 200:
-          image_data = response.content 
-          yield (b'--frame\r\n'
-                  b'Content-Type: image/png\r\n\r\n' + image_data + b'\r\n')
-      else:
-          print(f"Failed to fetch image from {image_url}, status code: {response.status_code}")
+        image_url = image_url_queue.get_nowait()
+        image_url_queue.put(image_url)
+
+        response = requests.get(image_url)
+        if response.status_code == 200:
+            image_data = response.content 
+            yield (b'--frame\r\n'
+                    b'Content-Type: image/png\r\n\r\n' + image_data + b'\r\n')
+        else:
+            print(f"Failed to fetch image from {image_url}, status code: {response.status_code}")
+        time.sleep(1)
 
 @app.route('/video_feed')
 def video_feed():
@@ -73,6 +81,8 @@ def index():
     """)
 
 def main(args=None):
+    threading.Thread(target=app.run, kwargs={'host':'0.0.0.0', 'port':5000}).start()
+    
     rclpy.init(args=args)
     image_display_node = ImageDisplayNode()
     rclpy.spin(image_display_node)
@@ -80,5 +90,4 @@ def main(args=None):
     rclpy.shutdown()
 
 if __name__ == '__main__':
-    threading.Thread(target=main).start()
-    app.run(host='0.0.0.0', port=5000)
+    main()

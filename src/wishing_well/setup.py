@@ -20,8 +20,10 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'wish_extraction_node = wishing_well.wish_extraction_node:main',
+            'prompt_generation_node = wishing_well.prompt_generation_node:main',
             'image_generation_node = wishing_well.image_generation_node:main',
-            'prompt_generation_node = wishing_well.prompt_generation_node:main'
+            'image_display_node = wishing_well.image_display_node:main'
         ],
     },
 )

@@ -21,6 +21,8 @@ RUN pip3 install \
         sounddevice \
         scipy
 
+RUN pip3 install setuptools==58.2.0
+
 # Create a new user with a specific UID and GID, and set up the workspace
 RUN useradd -m -u 1000 -s /bin/bash user && \
     mkdir -p /app && \
