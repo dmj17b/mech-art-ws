@@ -75,3 +75,13 @@ class WishExtractionNode(Node):
                 wish_list_reverse = self.wish_list.copy()
                 wish_list_reverse.reverse()
                 return wish_list_reverse
+
+def main(args=None):
+    rclpy.init(args=args)
+    wish_extraction_node = WishExtractionNode()
+    rclpy.spin(wish_extraction_node)
+    wish_extraction_node.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
