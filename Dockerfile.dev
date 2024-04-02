@@ -34,7 +34,7 @@ WORKDIR /app
 RUN usermod -aG video user
 
 # Switch to the new non-root user
-USER user
+# USER user
 
 # Set the default command to execute when creating a new container
 CMD ["bash"]

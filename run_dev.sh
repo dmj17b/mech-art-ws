@@ -11,6 +11,9 @@ docker build -t mechart-dev:latest -f Dockerfile.dev "${SCRIPT_DIR}"
 # Start the Docker container
 docker run -it \
     --rm \
+    -p 5000:5000 \
+    --privileged \
     -v "/${SCRIPT_DIR}:/app" \
+    -e "OPENAI_API_KEY=$(cat openai-key.txt)" \
     mechart-dev:latest \
     bash
