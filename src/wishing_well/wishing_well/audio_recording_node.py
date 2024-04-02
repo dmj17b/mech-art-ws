@@ -5,6 +5,7 @@ from std_msgs.msg import Empty
 from std_msgs.msg import Int16MultiArray
 
 import sounddevice as sd
+import numpy as np
 
 class AudioRecordingNode(Node):
             
@@ -33,9 +34,13 @@ class AudioRecordingNode(Node):
         sd.wait()
         return audio_data
 
-    def publish_audio_data(self, audio_data):
+    def publish_audio_data(self, audio_data : np.ndarray):
+        audio_data_int16 = audio_data.astype(np.int16)
+        flattened_audio_data = audio_data_int16.flatten()
+        audio_data_list = flattened_audio_data.tolist()
+
         msg = Int16MultiArray()
-        msg.data = audio_data.flatten()
+        msg.data = audio_data_list
         self.publisher.publish(msg)
 
 def main(args=None):

@@ -33,8 +33,12 @@ class ImageGenerationNode(Node):
 
     def listener_callback(self, msg : String):
 
-        self.get_logger().info(f'Generating Image...')
-        image_url = self.generate_image(msg.data)
+        if msg.data == '':
+            self.get_logger().info(f'Empty Prompt Received. Using Default Image')
+            image_url = self.default_url
+        else:
+            self.get_logger().info(f'Generating Image...')
+            image_url = self.generate_image(msg.data)
         
         msg = String()
         msg.data = image_url

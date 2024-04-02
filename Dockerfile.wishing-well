@@ -1,5 +1,5 @@
 # Start from the official Ubuntu image
-FROM dustynv/ros:humble-desktop-l4t-r32.7.1
+FROM ros:humble
 
 # Install necessary packages
 RUN apt-get update && \
@@ -15,6 +15,7 @@ RUN apt-get update && \
 
 RUN pip3 install \
         numpy  \
+        opencv-python-headless  \
         flask \
         openai \
         requests \
@@ -23,17 +24,4 @@ RUN pip3 install \
 
 RUN pip3 install setuptools==58.2.0
 
-# Create a new user with a specific UID and GID, and set up the workspace
-RUN useradd -m -u 1000 -s /bin/bash user && \
-    mkdir -p /app && \
-    chown -R user:user /app
 WORKDIR /app
-
-# Add the user to the video group
-RUN usermod -aG video user
-
-# Switch to the new non-root user
-USER user
-
-# Set the default command to execute when creating a new container
-CMD ["bash"]

@@ -7,6 +7,7 @@ from std_msgs.msg import Int16MultiArray
 from openai import OpenAI
 
 from scipy.io.wavfile import write
+import numpy as np
 
 class Speech2TextNode(Node):
         
@@ -36,13 +37,17 @@ class Speech2TextNode(Node):
         self.get_logger().info(f'Converted Audio to Text: {transcript}')
         
     def get_transcript_from_audio(self, recording):
-        write('/tmp/latest_audio.wav', self.sample_rate, recording)
-        audio_file=open('/tmp/latest_audio.wav', "rb")
-        transcript = self.openai.audio.transcriptions.create(
-            model=self.model, 
-            file=audio_file,
-            response_format="text"
-        )
+        recording_array = np.array(recording, dtype=np.int16).reshape(-1, 2)
+
+        wav_file_path = '/tmp/latest_audio.wav'
+        write(wav_file_path, self.sample_rate, recording_array)
+
+        with open(wav_file_path, "rb") as audio_file:
+            transcript = self.openai.audio.transcriptions.create(
+                model=self.model, 
+                file=audio_file,
+                response_format="text"
+            )
         return transcript
     
 def main(args=None):
