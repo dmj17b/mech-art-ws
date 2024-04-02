@@ -10,7 +10,7 @@ class ImageGenerationNode(Node):
     def __init__(self):
         super().__init__('image_generation_node')
 
-        self.publisher_ = self.create_publisher(String, 'dalle_image_url', 10)
+        self.publisher = self.create_publisher(String, 'dalle_image_url', 10)
         self.subscription = self.create_subscription(String, 'dalle_prompt', self.listener_callback, 10)
 
         self.openai = OpenAI()
@@ -18,10 +18,16 @@ class ImageGenerationNode(Node):
         self.declare_parameter('model', 'dall-e-3')
         self.declare_parameter('size', '1792x1024')
         self.declare_parameter('quality', 'standard')
+        self.declare_parameter('default_url', "https://raw.githubusercontent.com/JTylerBoylan/mech-art-ws/main/default_forest.webp")
 
         self.model = self.get_parameter('model').value
         self.size = self.get_parameter('size').value
         self.quality = self.get_parameter('quality').value
+        self.default_url = self.get_parameter('default_url').value
+
+        default_url_msg = String()
+        default_url_msg.data = self.default_url
+        self.publisher.publish(default_url_msg)
 
         self.get_logger().info(f'Image Generation Node Initialized with Model: {self.model}, Size: {self.size}, Quality: {self.quality}')
 
@@ -32,7 +38,7 @@ class ImageGenerationNode(Node):
         
         msg = String()
         msg.data = image_url
-        self.publisher_.publish(msg)
+        self.publisher.publish(msg)
 
         self.get_logger().info(f'Generated Image: {image_url}')
 

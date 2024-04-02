@@ -10,7 +10,7 @@ class PromptGenerationNode(Node):
         def __init__(self):
             super().__init__('prompt_generation_node')
     
-            self.publisher_ = self.create_publisher(String, 'dalle_prompt', 10)
+            self.publisher = self.create_publisher(String, 'dalle_prompt', 10)
             self.subscription = self.create_subscription(String, 'wish_list', self.listener_callback, 10)
     
             self.openai = OpenAI()
@@ -26,16 +26,19 @@ class PromptGenerationNode(Node):
     
             self.get_logger().info(f'Prompt Generation Node Initialized with Model: {self.model}')
     
-        def listener_callback(self, msg : String):
-    
-            self.get_logger().info(f'Generating Prompt...')
-            dalle_prompt = self.generate_dalle_prompt(msg.data)
-            
-            msg = String()
-            msg.data = dalle_prompt
-            self.publisher_.publish(msg)
-    
-            self.get_logger().info(f'Generated Prompt: {dalle_prompt}')
+        def listener_callback(self, wish_list_msg : String):
+            prompt_msg = String()
+            if wish_list_msg.data == "":
+                self.get_logger().info(f'Empty Wish List, Skipping Prompt Generation')
+                prompt_msg.data = ""
+                self.publisher.publish(prompt_msg)
+                return
+            else:
+                self.get_logger().info(f'Generating Prompt...')
+                dalle_prompt = self.generate_dalle_prompt(wish_list_msg.data)
+                prompt_msg.data = dalle_prompt
+                self.publisher.publish(prompt_msg)
+                self.get_logger().info(f'Generated Prompt: {dalle_prompt}')
     
         def generate_dalle_prompt(self, wish_list : str):
             response = self.openai.chat.completions.create(
