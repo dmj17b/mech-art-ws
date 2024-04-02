@@ -12,6 +12,7 @@ docker build -t mechart:latest "${SCRIPT_DIR}"
 docker run -it \
     --rm \
     --net host \
+    --privileged \
     -e "OPENAI_API_KEY=$(cat openai-key.txt)" \
     -e DISPLAY=$DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \

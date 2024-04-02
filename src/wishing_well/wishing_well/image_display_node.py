@@ -13,20 +13,20 @@ app = Flask(__name__)
 image_url_queue = queue.Queue(maxsize=1)
 
 class ImageDisplayNode(Node):
-    
-        def __init__(self):
-            super().__init__('image_display_node')
 
-            self.subscription = self.create_subscription(String, 'dalle_image_url', self.listener_callback, 10)
+    def __init__(self):
+        super().__init__('image_display_node')
 
-            self.get_logger().info(f'Image Display Node Initialized')
-    
-        def listener_callback(self, msg : String):
-            self.get_logger().info(f'Updating Image...')
-            if not image_url_queue.empty():
-              image_url_queue.get_nowait()
-            image_url_queue.put(msg.data)
-            self.get_logger().info(f'Updated Image: {msg.data}')
+        self.subscription = self.create_subscription(String, 'dalle_image_url', self.listener_callback, 10)
+
+        self.get_logger().info(f'Image Display Node Initialized')
+
+    def listener_callback(self, msg : String):
+        self.get_logger().info(f'Updating Image...')
+        if not image_url_queue.empty():
+            image_url_queue.get_nowait()
+        image_url_queue.put(msg.data)
+        self.get_logger().info(f'Updated Image: {msg.data}')
 
 def gen_frames():
     while True:
