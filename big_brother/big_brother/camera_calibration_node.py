@@ -12,7 +12,7 @@ class CameraCalibrationNode(Node):
 
         self.declare_parameter('calibration_width', 4.0)
         self.declare_parameter('calibration_height', 4.0)
-        self.declare_parameter('save_file', '/app/homography_matrix.npy')
+        self.declare_parameter('save_file', '/app/src/homography_matrix.npy')
 
         self.calibration_width = self.get_parameter('calibration_width').value
         self.calibration_height = self.get_parameter('calibration_height').value

@@ -16,7 +16,7 @@ class AudioRecordingNode(Node):
         self.subscription = self.create_subscription(Empty, 'record_audio', self.listener_callback, 10)
 
         self.declare_parameter('duration', 5)
-        self.declare_parameter('device_id', 5)
+        self.declare_parameter('device_id', 2)
 
         self.duration = self.get_parameter('duration').value
         self.device_id = self.get_parameter('device_id').value

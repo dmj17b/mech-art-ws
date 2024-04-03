@@ -13,8 +13,8 @@ class ImageSaveNode(Node):
 
         self.subscription = self.create_subscription(String, 'dalle_image_url', self.listener_callback, 10)
 
-        self.declare_parameter('image_save_path', '/app/images')
-        self.declare_parameter('default_url', "https://raw.githubusercontent.com/JTylerBoylan/mech-art-ws/main/default_forest.webp")
+        self.declare_parameter('image_save_path', '/app/src/images')
+        self.declare_parameter('default_url', "https://raw.githubusercontent.com/JTylerBoylan/mech-art-ws/main/default_image.webp")
 
         self.image_save_path = self.get_parameter('image_save_path').value
         self.default_url = self.get_parameter('default_url').value

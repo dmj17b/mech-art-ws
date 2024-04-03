@@ -4,7 +4,7 @@
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 # Build the Docker image
-docker build -t wishing-well:latest -f Dockerfile.wishing-well "${SCRIPT_DIR}" > /dev/null 2>&1
+docker build -t wishing-well:latest -f docker/Dockerfile.wishing-well "${SCRIPT_DIR}" > /dev/null 2>&1
 
 # Start the Docker container
 docker run -it \

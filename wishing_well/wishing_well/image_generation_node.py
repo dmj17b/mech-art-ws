@@ -18,7 +18,7 @@ class ImageGenerationNode(Node):
         self.declare_parameter('model', 'dall-e-3')
         self.declare_parameter('size', '1792x1024')
         self.declare_parameter('quality', 'standard')
-        self.declare_parameter('default_url', "https://raw.githubusercontent.com/JTylerBoylan/mech-art-ws/main/default_forest.webp")
+        self.declare_parameter('default_url', "https://raw.githubusercontent.com/JTylerBoylan/mech-art-ws/main/default_image.webp")
 
         self.model = self.get_parameter('model').value
         self.size = self.get_parameter('size').value

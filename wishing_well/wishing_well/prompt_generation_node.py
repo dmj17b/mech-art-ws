@@ -16,7 +16,7 @@ class PromptGenerationNode(Node):
         self.openai = OpenAI()
 
         self.declare_parameter('model', 'gpt-4')
-        self.declare_parameter('prompt_file', '/app/gpt-image-prompt.txt')
+        self.declare_parameter('prompt_file', '/app/src/gpt-image-prompt.txt')
 
         self.model = self.get_parameter('model').value
         self.prompt_file = self.get_parameter('prompt_file').value

@@ -6,7 +6,7 @@ xhost +local:root
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 
 # Build the Docker image
-docker build -t mechart-dev:latest -f Dockerfile.dev "${SCRIPT_DIR}"
+docker build -t mechart-dev:latest -f docker/Dockerfile.dev "${SCRIPT_DIR}"
 
 # Start the Docker container
 docker run -it \
@@ -14,7 +14,7 @@ docker run -it \
     --privileged \
     -e DISPLAY=$DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
-    -v "/${SCRIPT_DIR}:/app" \
+    -v "/${SCRIPT_DIR}:/app/src" \
     -e "OPENAI_API_KEY=$(cat openai-key.txt)" \
     mechart-dev:latest \
     bash
