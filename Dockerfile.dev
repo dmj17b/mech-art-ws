@@ -25,10 +25,16 @@ RUN pip3 install \
 
 RUN pip3 install setuptools==58.2.0
 
-# Create a new user with a specific UID and GID, and set up the workspace
+# Create a new user with a specific UID and GID
 RUN useradd -m -u 1000 -s /bin/bash user && \
     mkdir -p /app && \
     chown -R user:user /app
+
+# Give the user sudo privileges
+RUN echo 'user:password' | chpasswd
+RUN echo 'user ALL=(ALL) ALL' >> /etc/sudoers
+
+# Set work directory
 WORKDIR /app
 
 # Add the user to the video group

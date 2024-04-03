@@ -15,15 +15,17 @@ class AudioRecordingNode(Node):
         self.publisher = self.create_publisher(Int16MultiArray, 'audio_data', 10)
         self.subscription = self.create_subscription(Empty, 'record_audio', self.listener_callback, 10)
 
-        self.declare_parameter('duration', 10)
-        self.declare_parameter('sample_rate', 44100)
+        self.declare_parameter('duration', 5)
         self.declare_parameter('device_id', 5)
 
-        self.duration = self.get_parameter('duration').value
-        self.sample_rate = self.get_parameter('sample_rate').value
         self.device_id = self.get_parameter('device_id').value
+        self.duration = self.get_parameter('duration').value
 
         device_info = sd.query_devices(self.device_id, 'input')
+
+        self.declare_parameter('sample_rate', device_info["default_samplerate"])
+        self.sample_rate = self.get_parameter('sample_rate').value
+
         self.get_logger().info(f'\n'
             f'\t---Audio Recording Node---\n'
             f'\t Duration: {self.duration}\n'

@@ -85,7 +85,6 @@ def index():
 
 def main(args=None):
     threading.Thread(target=app.run, kwargs={'host':'0.0.0.0', 'port':5000}).start()
-    time.sleep(1)
 
     rclpy.init(args=args)
     image_display_node = ImageDisplayNode()
