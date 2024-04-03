@@ -2,10 +2,10 @@
 <?xml-model href="http://download.ros.org/schema/package_format3.xsd" schematypens="http://www.w3.org/2001/XMLSchema"?>
 <package format="3">
   <name>wishing_well</name>
-  <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="jtylerboylan@outlook.com">user</maintainer>
-  <license>TODO: License declaration</license>
+  <version>1.0.0</version>
+  <description>Wishing Well ROS Application</description>
+  <maintainer email="jboylan@fsu.edu">Jonathan Boylan</maintainer>
+  <license>Apache-2.0</license>
 
   <depend>rclpy</depend>
   <depend>std_msgs</depend>
