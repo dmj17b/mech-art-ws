@@ -1,7 +1,5 @@
 #!/bin/bash
 
-xhost +local:root
-
 # Get the absolute path to the directory containing this script
 SCRIPT_DIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 

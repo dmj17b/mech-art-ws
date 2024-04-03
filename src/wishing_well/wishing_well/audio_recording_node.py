@@ -18,8 +18,8 @@ class AudioRecordingNode(Node):
         self.declare_parameter('duration', 5)
         self.declare_parameter('device_id', 5)
 
-        self.device_id = self.get_parameter('device_id').value
         self.duration = self.get_parameter('duration').value
+        self.device_id = self.get_parameter('device_id').value
 
         device_info = sd.query_devices(self.device_id, 'input')
 
