@@ -55,6 +55,7 @@ class AudioRecordingNode(Node):
 
         msg = Int16MultiArray()
         msg.data = audio_data_list
+        msg.layout.data_offset = int(self.sample_rate)
         self.publisher.publish(msg)
 
 def main(args=None):
