@@ -12,8 +12,8 @@ class CameraFeedNode(Node):
         self.publisher_ = self.create_publisher(Image, 'camera_feed', 10)
 
         self.declare_parameter('camera_device', 0)
-        self.declare_parameter('camera_width', 640)
-        self.declare_parameter('camera_height', 480)
+        self.declare_parameter('camera_width', 1280)
+        self.declare_parameter('camera_height', 720)
         self.declare_parameter('camera_fps', 30)
 
         self.camera_device = self.get_parameter('camera_device').value
@@ -22,7 +22,6 @@ class CameraFeedNode(Node):
         self.camera_fps = self.get_parameter('camera_fps').value
 
         self.cap = cv2.VideoCapture(self.camera_device)
-        self.cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M','J','P','G'))
         self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, self.camera_width)
         self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, self.camera_height)
         self.cap.set(cv2.CAP_PROP_FPS, self.camera_fps)

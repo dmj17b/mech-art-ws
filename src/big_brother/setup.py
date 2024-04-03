@@ -21,7 +21,8 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'camera_feed_node = big_brother.camera_feed_node:main'
+            'camera_feed_node = big_brother.camera_feed_node:main',
+            'camera_calibration_node = big_brother.camera_calibration_node:main',
         ],
     },
 )

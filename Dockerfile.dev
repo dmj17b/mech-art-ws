@@ -13,7 +13,8 @@ RUN apt-get update && \
         libx11-xcb1 \
         portaudio19-dev \
         python3-pyaudio \
-        ros-humble-cv-bridge
+        ros-humble-cv-bridge \
+        ros-humble-image-view
 
 RUN pip3 install \
         numpy  \
