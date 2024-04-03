@@ -19,14 +19,17 @@ class ImageDisplayNode(Node):
 
         self.subscription = self.create_subscription(String, 'dalle_image_url', self.listener_callback, 10)
 
-        self.get_logger().info(f'Image Display Node Initialized')
+        self.get_logger().info(f'\n'
+            f'\t\t---Image Display Node---\n'
+            f'\t\t------------------------\n'
+        )
 
     def listener_callback(self, msg : String):
         self.get_logger().info(f'Updating Image...')
         if not image_url_queue.empty():
             image_url_queue.get_nowait()
         image_url_queue.put(msg.data)
-        self.get_logger().info(f'Updated Image: {msg.data}')
+        self.get_logger().info(f'Updated Image.')
 
 def gen_frames():
     while True:
@@ -82,7 +85,8 @@ def index():
 
 def main(args=None):
     threading.Thread(target=app.run, kwargs={'host':'0.0.0.0', 'port':5000}).start()
-    
+    time.sleep(1)
+
     rclpy.init(args=args)
     image_display_node = ImageDisplayNode()
     rclpy.spin(image_display_node)

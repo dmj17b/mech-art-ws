@@ -34,6 +34,9 @@ WORKDIR /app
 # Add the user to the video group
 RUN usermod -aG video user
 
+# Add ROS to the user's bashrc
+RUN echo "source /opt/ros/humble/setup.bash" >> /home/user/.bashrc
+
 # Switch to the new non-root user
 USER user
 

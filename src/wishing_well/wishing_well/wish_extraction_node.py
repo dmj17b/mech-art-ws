@@ -26,7 +26,12 @@ class WishExtractionNode(Node):
 
         self.wish_list = []
 
-        self.get_logger().info(f'Wish Extraction Node Initialized with Model: {self.model}')
+        self.get_logger().info(f'\n'
+            f'\t---Wish Extraction Node---\n'
+            f'\t Model: {self.model}\n'
+            f'\t Prompt File: {self.prompt_file}\n'
+            f'\t--------------------------\n'
+        )
 
     def listener_callback(self, msg : String):
         self.get_logger().info(f'Extracting Wish...')

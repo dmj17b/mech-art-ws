@@ -25,7 +25,12 @@ class Speech2TextNode(Node):
 
         self.openai = OpenAI()
 
-        self.get_logger().info(f'Speech2Text Node Initialized with Model: {self.model}')
+        self.get_logger().info(f'\n'
+            f'\t\t---Speech2Text Node---\n'
+            f'\t\t Model: {self.model}\n'
+            f'\t\t Sample Rate: {self.sample_rate}\n'
+            f'\t\t----------------------\n'
+        )
 
     def listener_callback(self, audio_data_msg : Int16MultiArray):
         self.get_logger().info(f'Converting Audio to Text...')

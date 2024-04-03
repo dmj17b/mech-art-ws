@@ -19,7 +19,12 @@ class ImageSaveNode(Node):
         self.image_save_path = self.get_parameter('image_save_path').value
         self.default_url = self.get_parameter('default_url').value
 
-        self.get_logger().info(f'Image Save Node Initialized with Image Save Path: {self.image_save_path}')
+        self.get_logger().info(f'\n'
+            f'\t\t---Image Save Node---\n'
+            f'\t\t Image Save Path: {self.image_save_path}\n'
+            f'\t\t Default URL: {self.default_url}\n'
+            f'\t\t--------------------------\n'
+        )
 
     def listener_callback(self, msg : String):
         if msg.data == self.default_url:
@@ -28,7 +33,7 @@ class ImageSaveNode(Node):
 
         self.get_logger().info(f'Saving Image...')
         self.save_image(msg.data)
-        self.get_logger().info(f'Saved Image: {msg.data}')
+        self.get_logger().info(f'Saved Image.')
 
     def save_image(self, image_url: str):
         current_time = datetime.now().isoformat()

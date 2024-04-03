@@ -16,4 +16,4 @@ docker run -it \
     -e "OPENAI_API_KEY=$(cat openai-key.txt)" \
     -v "/${SCRIPT_DIR}:/app" \
     wishing-well:latest \
-    /bin/bash -c "source install/setup.bash && ros2 launch src/wishing_well/launch/wishing_well_launch.py"
+    /bin/bash -c "colcon build && source install/setup.bash && ros2 launch src/wishing_well/launch/wishing_well_launch.py"

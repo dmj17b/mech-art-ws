@@ -24,4 +24,6 @@ RUN pip3 install \
 
 RUN pip3 install setuptools==58.2.0
 
+RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+
 WORKDIR /app

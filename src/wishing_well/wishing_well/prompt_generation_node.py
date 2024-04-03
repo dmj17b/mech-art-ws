@@ -24,7 +24,12 @@ class PromptGenerationNode(Node):
         with open(self.prompt_file, 'r') as file:
             self.gpt_image_prompt = file.read()
 
-        self.get_logger().info(f'Prompt Generation Node Initialized with Model: {self.model}')
+        self.get_logger().info(f'\n'
+            f'\t---Prompt Generation Node---\n'
+            f'\t Model: {self.model}\n'
+            f'\t Prompt File: {self.prompt_file}\n'
+            f'\t--------------------------\n'
+        )
 
     def listener_callback(self, wish_list_msg : String):
         prompt_msg = String()

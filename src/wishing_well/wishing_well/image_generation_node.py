@@ -29,7 +29,14 @@ class ImageGenerationNode(Node):
         default_url_msg.data = self.default_url
         self.publisher.publish(default_url_msg)
 
-        self.get_logger().info(f'Image Generation Node Initialized with Model: {self.model}, Size: {self.size}, Quality: {self.quality}')
+        self.get_logger().info(f'\n'
+            f'\t---Image Generation Node---\n'
+            f'\t Model: {self.model}\n'
+            f'\t Size: {self.size}\n'
+            f'\t Quality: {self.quality}\n'
+            f'\t Default URL: {self.default_url}\n'
+            f'\t--------------------------\n'
+        )
 
     def listener_callback(self, msg : String):
 

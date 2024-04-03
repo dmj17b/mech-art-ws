@@ -23,8 +23,17 @@ class AudioRecordingNode(Node):
         self.sample_rate = self.get_parameter('sample_rate').value
         self.device_id = self.get_parameter('device_id').value
 
-        self.get_logger().info(f'Audio Recording Node Initialized with Duration: {self.duration}, Sample Rate: {self.sample_rate} and Device ID: {self.device_id}')
-        self.get_logger().info(f"Device Info: {sd.query_devices(self.device_id, 'input')}")
+        device_info = sd.query_devices(self.device_id, 'input')
+        self.get_logger().info(f'\n'
+            f'\t---Audio Recording Node---\n'
+            f'\t Duration: {self.duration}\n'
+            f'\t Sample Rate: {self.sample_rate}\n'
+            f'\t Device ID: {self.device_id}\n'
+            f'\t Device Name: {device_info["name"]}\n'
+            f'\t Channels: {device_info["max_input_channels"]}\n'
+            f'\t Default Sample Rate: {device_info["default_samplerate"]}\n'
+            f'\t--------------------------\n'
+        )
 
     def listener_callback(self, _):
         self.get_logger().info(f'Recording Audio...')
