@@ -37,7 +37,7 @@ class Speech2TextNode(Node):
         self.get_logger().info(f'Converted Audio to Text: {transcript}')
         
     def get_transcript_from_audio(self, recording):
-        recording_array = np.array(recording, dtype=np.int16).reshape(-1, 2)
+        recording_array = np.array(recording, dtype=np.int16).reshape(-1, 1)
 
         wav_file_path = '/tmp/latest_audio.wav'
         write(wav_file_path, self.sample_rate, recording_array)

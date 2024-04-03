@@ -9,7 +9,7 @@ def record_audio(duration=5, sample_rate=44100):
     Record audio from the microphone for a given duration and sample rate.
     """
     print(f"Recording for {duration} seconds...")
-    recording = sd.rec(int(duration * sample_rate), samplerate=sample_rate, channels=2, dtype='int16')
+    recording = sd.rec(int(duration * sample_rate), samplerate=sample_rate, channels=1, dtype='int16', device=5)
     sd.wait()  # Wait until recording is finished
     return recording, sample_rate
 
@@ -38,7 +38,7 @@ def transcribe_audio_with_whisper(filename='output.wav'):
 
 # Main process
 if __name__ == "__main__":
-    duration = 30  # Duration to record in seconds
+    duration = 5 # Duration to record in seconds
     sample_rate = 44100  # Sample rate for the recording
     
     # Record and save audio
