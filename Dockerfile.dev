@@ -12,7 +12,8 @@ RUN apt-get update && \
         libqt5x11extras5 \
         libx11-xcb1 \
         portaudio19-dev \
-        python3-pyaudio
+        python3-pyaudio \
+        ros-humble-cv-bridge
 
 RUN pip3 install \
         numpy  \
