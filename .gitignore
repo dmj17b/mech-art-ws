@@ -1,5 +1,7 @@
-build
-install
-log
 openai-key.txt
 images
+yolov3.weights
+yolov3.cfg
+yolov3-tiny.weights
+yolov3-tiny.cfg
+coco.names
