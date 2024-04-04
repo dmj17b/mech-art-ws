@@ -71,12 +71,12 @@ class PersonLocalizationNode(Node):
                         center_x, center_y, width, height = (detection[0:4] * np.array([cv_image.shape[1], cv_image.shape[0], cv_image.shape[1], cv_image.shape[0]])).astype('int')
                         x = int(center_x - width / 2)
                         y = int(center_y - height / 2)
-                        boxes.append([x, y, width, height])
+                        boxes.append([x, y, int(width), int(height)])
                         confidences.append(float(confidence))
                         class_ids.append(class_id)
             
             # Non-max suppression to avoid multiple boxes
-            indices = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.4)
+            indices = cv2.dnn.NMSBoxes(boxes, confidences, float(0.5), float(0.4))
 
             if len(indices) > 0 and isinstance(indices, tuple):
                 indices = indices[0]
