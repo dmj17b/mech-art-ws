@@ -45,7 +45,11 @@ class ImageGenerationNode(Node):
             image_url = self.default_url
         else:
             self.get_logger().info(f'Generating Image...')
-            image_url = self.generate_image(msg.data)
+            try:
+                image_url = self.generate_image(msg.data)
+            except Exception as e:
+                self.get_logger().error(f'Error Generating Image: {e}')
+                image_url = self.default_url
         
         msg = String()
         msg.data = image_url

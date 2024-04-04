@@ -42,7 +42,7 @@ class WishExtractionNode(Node):
         msg = String()
         msg.data = ",".join(wish_list)
         self.publisher.publish(msg)
-        self.get_logger().info(f'Extracted Wish List: {wish_list}')
+        self.get_logger().info(f'Extracted Wish List: {msg.data}')
 
     def get_wishes_from_transcript(self, transcript: str):
         response = self.openai.chat.completions.create(
