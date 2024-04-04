@@ -39,7 +39,6 @@ class HeatmapNode(Node):
             y = point.y
             x = x / self.x_width + 0.5
             y = y / self.y_height + 0.5
-            y = -y
             cv2.circle(heat_map, (int(x * self.image_width), int(y * self.image_height)), 10, (0, 0, 255), -1)
         heat_map = cv2.GaussianBlur(heat_map, (15, 15), 0)
         return CvBridge().cv2_to_imgmsg(heat_map, encoding='bgr8')
