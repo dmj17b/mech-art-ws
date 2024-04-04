@@ -1,0 +1,20 @@
+FROM dustynv/ros:humble-desktop-l4t-r32.7.1
+
+RUN apt-get update && \
+    apt-get install -y \
+        python3-pip \
+        ros-humble-cv-bridge
+
+RUN pip3 install flask
+
+RUN pip3 install setuptools==58.2.0
+
+RUN useradd -m -u 1000 -s /bin/bash user && \
+    mkdir -p /app && \
+    chown -R user:user /app
+
+RUN usermod -aG video user
+
+WORKDIR /app
+
+USER user
