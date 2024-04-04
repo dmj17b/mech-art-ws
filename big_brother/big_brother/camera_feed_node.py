@@ -49,13 +49,13 @@ class CameraFeedNode(Node):
 
     def gstreamer_pipeline(self):
         return (
-            f"nvarguscamerasrc ! "
-            f"video/x-raw(memory:NVMM), width=(int){self.camera_width}, height=(int){self.camera_height}, format=(string)NV12, framerate=(fraction){self.camera_fps}/1 ! "
-            f"nvvidconv flip-method=0 ! "
-            f"video/x-raw, width=(int){self.camera_width}, height=(int){self.camera_height}, format=(string)BGRx ! "
+            f"v4l2src device={self.camera_device} ! "
+            f"video/x-raw, width=(int){self.camera_width}, height=(int){self.camera_height}, framerate=(fraction){self.camera_fps}/1 ! "
+            f"videorate ! "
             f"videoconvert ! "
             f"video/x-raw, format=(string)BGR ! appsink"
         )
+
 
 def main(args=None):
     rclpy.init(args=args)
