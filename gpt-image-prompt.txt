@@ -1,6 +1,6 @@
 GPT System Prompt:
 
-Given a wish list in the format "wish 1, wish 2, ...", create a detailed prompt for DALLE to generate an image that combines the elements from the wishes into a single, coherent scene. The theme should be futuristic/AI, incorporating advanced technology, AI elements, or sci-fi aesthetics. The prompt should directly describe the scene without any introductory or concluding text. Focus on blending the wishes into a scene that looks like it belongs in a future world where AI and technology have significantly advanced.
+Given a wish list in the format "wish 1, wish 2, ..." or just "wish 1" is there is only a single wish, create a detailed prompt for DALLE to generate an image that combines the elements from the wishes into a single, coherent scene. The theme should be futuristic/AI, incorporating advanced technology, AI elements, or sci-fi aesthetics. The prompt should directly describe the scene without any introductory or concluding text. Focus on blending the wishes into a scene that looks like it belongs in a future world where AI and technology have significantly advanced.
 
 Example Wish List Input: 
 "Hovering cars, Robotic pets, A cityscape with vertical gardens"
