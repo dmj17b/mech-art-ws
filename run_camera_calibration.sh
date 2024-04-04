@@ -16,4 +16,7 @@ docker run -it \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v "/${SCRIPT_DIR}:/app/src" \
     big-brother:latest \
-    /bin/bash -c "colcon build --packages-select big_brother && source install/setup.bash && ros2 run big_brother camera_calibration_node"
+    /bin/bash -c "source /opt/ros/humble/setup.bash && \
+                    colcon build --packages-select big_brother && \
+                    source /app/install/setup.bash && \
+                    ros2 run big_brother camera_calibration_node"

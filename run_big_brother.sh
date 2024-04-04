@@ -25,4 +25,7 @@ docker run -it --rm \
     -v /dev/*:/dev/* \
     -v "/${SCRIPT_DIR}:/app/src" \
     big-brother:latest \
-    /bin/bash -c "colcon build --packages-select big_brother && source install/setup.bash && ros2 launch big_brother big_brother_launch.py"
+    /bin/bash -c "source /opt/ros/humble/setup.bash && \
+                    colcon build --packages-select big_brother && \
+                    source /app/install/setup.bash && \
+                    ros2 launch big_brother big_brother_launch.py"

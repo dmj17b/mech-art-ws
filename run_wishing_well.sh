@@ -20,6 +20,6 @@ docker run -it --rm \
     -e "OPENAI_API_KEY=$(cat openai-key.txt)" \
     wishing-well:latest \
     /bin/bash -c "source /opt/ros/humble/setup.bash && \
-                    colcon build && \
+                    colcon build --packages-select wishing_well && \
                     source /app/install/setup.bash && \
                     ros2 launch wishing_well wishing_well_launch.py"
