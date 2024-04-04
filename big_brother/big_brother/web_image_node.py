@@ -12,7 +12,7 @@ import cv2
 from cv_bridge import CvBridge
 
 app = Flask(__name__)
-image_queue : Queue[Image] = Queue(maxsize=1)
+image_queue = Queue(maxsize=1)
 sleep_duration = 0.0
 
 class WebImageNode(Node):
