@@ -19,7 +19,7 @@ docker run -it --rm \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     -v "/${SCRIPT_DIR}:/app/src" \
     big-brother-jetson:latest \
-    /bin/bash -c "source /opt/ros/humble/setup.bash && \
+    /bin/bash -c "source /opt/ros/humble/install/setup.bash && \
                     colcon build --packages-select big_brother && \
                     source /app/install/setup.bash && \
                     ros2 launch big_brother big_brother_launch.py"
