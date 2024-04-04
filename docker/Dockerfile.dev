@@ -1,7 +1,5 @@
-# Start from the official Ubuntu image
 FROM ros:humble
 
-# Install necessary packages
 RUN apt-get update && \
     apt-get install -y \
         python3-pip \
@@ -36,7 +34,6 @@ RUN useradd -m -u 1000 -s /bin/bash user && \
 RUN echo 'user:password' | chpasswd
 RUN echo 'user ALL=(ALL) ALL' >> /etc/sudoers
 
-# Set work directory
 WORKDIR /app
 
 # Add the user to the video group

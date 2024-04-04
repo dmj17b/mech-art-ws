@@ -1,7 +1,5 @@
-# Start from the official Ubuntu image
 FROM ros:humble
 
-# Install necessary packages
 RUN apt-get update && \
     apt-get install -y \
         python3-pip \
@@ -18,6 +16,12 @@ RUN pip3 install \
 
 RUN pip3 install setuptools==58.2.0
 
-RUN echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
+RUN useradd -m -u 1000 -s /bin/bash user && \
+    mkdir -p /app && \
+    chown -R user:user /app
+
+RUN usermod -aG audio user
 
 WORKDIR /app
+
+USER user
