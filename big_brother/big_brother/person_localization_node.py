@@ -20,7 +20,11 @@ class PersonLocalizationNode(Node):
 
             self.weight_path = self.get_parameter('weight_path').value
             self.config_path = self.get_parameter('config_path').value
+            
             self.net = cv2.dnn.readNet(self.weight_path, self.config_path)
+            self.net.setPreferableBackend(cv2.dnn.DNN_BACKEND_CUDA)
+            self.net.setPreferableTarget(cv2.dnn.DNN_TARGET_CUDA)
+
             self.layer_names = self.net.getLayerNames()
             self.output_layer_indices = self.net.getUnconnectedOutLayers().flatten()
             self.output_layers = [self.layer_names[i - 1] for i in self.output_layer_indices]
@@ -78,7 +82,7 @@ class PersonLocalizationNode(Node):
             # Non-max suppression to avoid multiple boxes
             indices = cv2.dnn.NMSBoxes(boxes, confidences, float(0.5), float(0.4))
 
-            if len(indices) > 0 and isinstance(indices, tuple):
+            if len(indices) > 0:
                 indices = indices[0]
 
             return boxes, indices
