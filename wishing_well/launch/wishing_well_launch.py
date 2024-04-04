@@ -7,7 +7,10 @@ def generate_launch_description():
             package='wishing_well',
             executable='audio_recording_node',
             name='audio_recording_node',
-            output='screen'
+            output='screen',
+            parameters=[
+                {'device_id': 2}
+            ]
         ),
         Node(
             package='wishing_well',
@@ -37,7 +40,10 @@ def generate_launch_description():
             package='wishing_well',
             executable='image_display_node',
             name='image_display_node',
-            output='screen'
+            output='screen',
+            parameters=[
+                {'port': 5000}
+            ]
         ),
         Node(
             package='wishing_well',

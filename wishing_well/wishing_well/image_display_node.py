@@ -3,14 +3,14 @@ from rclpy.node import Node
 
 from std_msgs.msg import String
 
+import time
 import threading
 import requests
-import queue
-import time
+from queue import Queue
 from flask import Flask, Response, render_template_string
 
 app = Flask(__name__)
-image_url_queue = queue.Queue(maxsize=1)
+image_url_queue = Queue(maxsize=1)
 
 class ImageDisplayNode(Node):
 
@@ -19,9 +19,14 @@ class ImageDisplayNode(Node):
 
         self.subscription = self.create_subscription(String, 'dalle_image_url', self.listener_callback, 10)
 
+        self.declare_parameter('port', 5000)
+
+        self.port = self.get_parameter('port').value
+
         self.get_logger().info(f'\n'
-            f'\t\t---Image Display Node---\n'
-            f'\t\t------------------------\n'
+            f'\t---Image Display Node---\n'
+            f'\t Port: {self.port}\n'
+            f'\t--------------------------\n'
         )
 
     def listener_callback(self, msg : String):
@@ -32,24 +37,25 @@ class ImageDisplayNode(Node):
         self.get_logger().info(f'Updated Image.')
 
 def gen_frames():
+    image_data : bytes = []
     while True:
 
         if image_url_queue.empty():
             yield (b'--frame\r\n'
-                    b'Content-Type: image/png\r\n\r\n' + b'\r\n')
+                    b'Content-Type: image/png\r\n\r\n' + image_data + b'\r\n')
             time.sleep(1)
             continue
 
         image_url = image_url_queue.get_nowait()
-        image_url_queue.put(image_url)
-
         response = requests.get(image_url)
+
         if response.status_code == 200:
             image_data = response.content 
             yield (b'--frame\r\n'
                     b'Content-Type: image/png\r\n\r\n' + image_data + b'\r\n')
         else:
             print(f"Failed to fetch image from {image_url}, status code: {response.status_code}")
+
         time.sleep(1)
 
 @app.route('/video_feed')

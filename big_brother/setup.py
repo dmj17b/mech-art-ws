@@ -23,6 +23,7 @@ setup(
         'console_scripts': [
             'camera_feed_node = big_brother.camera_feed_node:main',
             'camera_calibration_node = big_brother.camera_calibration_node:main',
+            'web_image_node = big_brother.web_image_node:main',
         ],
     },
 )

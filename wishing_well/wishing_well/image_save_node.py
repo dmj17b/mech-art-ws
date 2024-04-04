@@ -5,7 +5,6 @@ from std_msgs.msg import String
 
 from datetime import datetime
 import requests
-import hashlib
 
 class ImageSaveNode(Node):  
     def __init__(self):
