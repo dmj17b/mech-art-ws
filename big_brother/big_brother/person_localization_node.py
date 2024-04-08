@@ -82,7 +82,7 @@ class PersonLocalizationNode(Node):
             # Non-max suppression to avoid multiple boxes
             indices = cv2.dnn.NMSBoxes(boxes, confidences, float(0.5), float(0.4))
 
-            if len(indices) > 0:
+            if len(indices) > 0 and type(indices[0]) is not np.int32:
                 indices = indices[0]
 
             return boxes, indices
