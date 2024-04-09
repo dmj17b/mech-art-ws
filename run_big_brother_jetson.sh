@@ -27,7 +27,7 @@ docker run -it --rm \
     --volume /var/run/docker.sock:/var/run/docker.sock \
     --volume $ROOT/data:/data \
     big-brother-jetson:latest \
-    /bin/bash -c "source /opt/ros/humble/install/setup.bash && \
+    /bin/bash -c "source /opt/ros/humble/setup.bash && \
                     colcon build --packages-select big_brother && \
                     source /app/install/setup.bash && \
                     ros2 launch big_brother big_brother_launch.py"
