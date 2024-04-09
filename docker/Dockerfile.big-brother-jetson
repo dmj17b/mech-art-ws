@@ -10,7 +10,7 @@ RUN apt-get update && \
         libx11-xcb1 \
         v4l-utils
 
-RUN pip3 install flask
+RUN pip3 install flask ultralytics
 
 RUN pip3 install setuptools==58.2.0
 
