@@ -2,7 +2,15 @@ FROM ros:humble
 
 RUN apt-get update && \
     apt-get install -y \
-        python3-pip
+        python3-pip \
+        libgtk2.0-dev \
+        pkg-config \
+        libgl1-mesa-glx \
+        libglib2.0-0 \
+        libqt5x11extras5 \
+        libx11-xcb1 \
+        v4l-utils \
+        ros-humble-cv-bridge
 
 RUN pip3 install torch flask ultralytics
 
