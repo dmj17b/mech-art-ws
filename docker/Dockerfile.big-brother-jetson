@@ -1,16 +1,10 @@
-FROM dustynv/ros:humble-pytorch-l4t-r32.7.1
+FROM ros:humble
 
 RUN apt-get update && \
     apt-get install -y \
-        libgtk2.0-dev \
-        pkg-config \
-        libgl1-mesa-glx \
-        libglib2.0-0 \
-        libqt5x11extras5 \
-        libx11-xcb1 \
-        v4l-utils
+        python3-pip
 
-RUN pip3 install flask ultralytics
+RUN pip3 install pytorch flask ultralytics
 
 RUN pip3 install setuptools==58.2.0
 
