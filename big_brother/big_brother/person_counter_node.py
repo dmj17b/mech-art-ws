@@ -40,3 +40,13 @@ class PersonCounterNode(Node):
         msg.data = count
         self.publisher.publish(msg)
         self.get_logger().info(f'Counted {count} people.')
+
+def main(args=None):
+    rclpy.init(args=args)
+    person_counter_node = PersonCounterNode()
+    rclpy.spin(person_counter_node)
+    person_counter_node.destroy_node()
+    rclpy.shutdown()
+
+if __name__ == '__main__':
+    main()
