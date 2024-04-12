@@ -1,8 +1,8 @@
 import rclpy
 from rclpy.node import Node
 
-from std_msgs import Int32
-from sensor_msgs import PointCloud
+from std_msgs.msg import Int32
+from sensor_msgs.msg import PointCloud
 
 class PersonCounterNode(Node):
     def __init__(self):
