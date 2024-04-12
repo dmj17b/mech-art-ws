@@ -17,9 +17,11 @@ class WishExtractionNode(Node):
 
         self.declare_parameter('model', 'gpt-4')
         self.declare_parameter('prompt_file', '/app/src/gpt-audio-prompt.txt')
+        self.declare_parameter('num_wishes', 5)
 
         self.model = self.get_parameter('model').value
         self.prompt_file = self.get_parameter('prompt_file').value
+        self.num_wishes = self.get_parameter('num_wishes').value
 
         with open(self.prompt_file, 'r') as file:
             self.gpt_audio_prompt = file.read()
@@ -77,6 +79,9 @@ class WishExtractionNode(Node):
             self.wish_list.append(wish)
 
     def format_wish_list(self):
+        if (len(self.wish_list) > self.num_wishes):
+            self.wish_list = self.wish_list.pop(0)
+            
         wish_list_reverse = self.wish_list.copy()
         wish_list_reverse.reverse()
         return wish_list_reverse
