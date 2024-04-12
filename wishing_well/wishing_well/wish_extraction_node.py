@@ -80,8 +80,8 @@ class WishExtractionNode(Node):
 
     def format_wish_list(self):
         if (len(self.wish_list) > self.num_wishes):
-            self.wish_list = self.wish_list.pop(0)
-            
+            self.wish_list = self.wish_list[1:self.num_wishes+1]
+        
         wish_list_reverse = self.wish_list.copy()
         wish_list_reverse.reverse()
         return wish_list_reverse
