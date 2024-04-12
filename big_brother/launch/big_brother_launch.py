@@ -54,4 +54,10 @@ def generate_launch_description():
                 {'update_rate': 30.0}
             ]
         ),
+        Node(
+            package='big_brother',
+            executable='person_counter_node',
+            name='person_counter_node',
+            output='screen'
+        )
     ])

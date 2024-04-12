@@ -26,6 +26,7 @@ setup(
             'web_image_node = big_brother.web_image_node:main',
             'person_localization_node = big_brother.person_localization_node:main',
             'heat_map_node = big_brother.heat_map_node:main',
+            'person_counter_node = big_brother.person_counter_node:main',
         ],
     },
 )

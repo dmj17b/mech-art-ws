@@ -25,7 +25,14 @@ class PersonCounterNode(Node):
 
     def listener_callback(self, msg : PointCloud):
         self.get_logger().info(f'Counting People...')
-        count = len(msg.points)
+        count = 0
+        for point in msg.points:
+            x, y = point.x, point.y
+            center_x = self.get_parameter('center_x').value
+            center_y = self.get_parameter('center_y').value
+            radius = self.get_parameter('radius').value
+            if (x - center_x)**2 + (y - center_y)**2 < radius**2:
+                count += 1
         self.publish_person_count(count)
 
     def publish_person_count(self, count: int):
