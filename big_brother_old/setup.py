@@ -21,9 +21,10 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'camera_feed_node = big_brother.camera_feed_node:main',
             'camera_calibration_node = big_brother.camera_calibration_node:main',
             'web_image_node = big_brother.web_image_node:main',
-            'person_locator_node = big_brother.person_locator_node:main',
+            'person_localization_node = big_brother.person_localization_node:main',
             'heat_map_node = big_brother.heat_map_node:main',
             'person_counter_node = big_brother.person_counter_node:main',
         ],

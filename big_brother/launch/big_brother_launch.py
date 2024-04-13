@@ -5,14 +5,8 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='big_brother',
-            executable='camera_feed_node',
-            name='camera_feed_node',
-            output='screen'
-        ),
-        Node(
-            package='big_brother',
-            executable='person_localization_node',
-            name='person_localization_node',
+            executable='person_locator_node',
+            name='person_locator_node',
             output='screen'
         ),
         Node(
@@ -27,7 +21,7 @@ def generate_launch_description():
             name='web_image_node',
             output='screen',
             parameters=[
-                {'image_topic': 'camera_feed'},
+                {'image_topic': '/video_source/raw'},
                 {'port': 5001},
                 {'update_rate': 30.0}
             ]
@@ -38,7 +32,7 @@ def generate_launch_description():
             name='web_image_node',
             output='screen',
             parameters=[
-                {'image_topic': 'detected_persons'},
+                {'image_topic': '/detectnet/overlay'},
                 {'port': 5002},
                 {'update_rate': 30.0}
             ]
