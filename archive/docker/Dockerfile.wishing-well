@@ -1,0 +1,27 @@
+FROM ros:humble
+
+RUN apt-get update && \
+    apt-get install -y \
+        python3-pip \
+        python3-pyaudio
+
+RUN pip3 install \
+        numpy  \
+        opencv-python-headless  \
+        flask \
+        openai \
+        requests \
+        sounddevice \
+        scipy
+
+RUN pip3 install setuptools==58.2.0
+
+RUN useradd -m -u 1000 -s /bin/bash user && \
+    mkdir -p /app && \
+    chown -R user:user /app
+
+RUN usermod -aG audio user
+
+WORKDIR /app
+
+USER user

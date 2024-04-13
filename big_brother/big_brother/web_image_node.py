@@ -53,7 +53,7 @@ def gen_frames():
             time.sleep(sleep_duration)
             continue
 
-        image = image_queue.get_nowait()
+        image = image_queue.get()
         
         cv_image = CvBridge().imgmsg_to_cv2(image, desired_encoding='bgr8')
         _, buffer = cv2.imencode('.png', cv_image)

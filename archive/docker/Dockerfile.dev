@@ -12,8 +12,7 @@ RUN apt-get update && \
         portaudio19-dev \
         python3-pyaudio \
         ros-humble-cv-bridge \
-        ros-humble-image-view \
-        ros-humble-vision-msgs
+        ros-humble-image-view
 
 RUN pip3 install \
         numpy  \
@@ -22,7 +21,8 @@ RUN pip3 install \
         openai \
         requests \
         sounddevice \
-        scipy
+        scipy \
+        ultralytics
 
 RUN pip3 install setuptools==58.2.0
 

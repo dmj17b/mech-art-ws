@@ -10,13 +10,13 @@ RUN apt-get update && \
         libqt5x11extras5 \
         libx11-xcb1 \
         v4l-utils \
-        ros-humble-cv-bridge \
-        ros-humble-vision-msgs
+        ros-humble-cv-bridge
 
 RUN pip3 install \
         numpy \
         flask \
-        opencv-python
+        opencv-python \
+        ultralytics
 
 RUN pip3 install setuptools==58.2.0
 

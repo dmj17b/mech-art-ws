@@ -11,7 +11,6 @@ docker build -t big-brother:latest -f docker/Dockerfile.big-brother "${SCRIPT_DI
 # Start the Docker container
 docker run -it --rm \
     --privileged \
-    --runtime nvidia \
     --network host \
     --pid host \
     --ipc host \
