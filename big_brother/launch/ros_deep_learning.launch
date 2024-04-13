@@ -1,0 +1,26 @@
+<launch>
+
+    <node pkg="ros_deep_learning" exec="video_source" output="screen">
+		<param name="resource" value="v4l2:///dev/video0"/>
+		<param name="width" value="0"/>
+		<param name="height" value="0"/>
+		<param name="codec" value="unknown"/>
+		<param name="loop" value="0"/>
+		<param name="latency" value="2000"/>
+	</node>
+
+    <node pkg="ros_deep_learning" exec="detectnet" output="screen">
+		<remap from="/detectnet/image_in" to="/video_source/raw"/>
+		<param name="model_name" value="ssd-mobilenet-v2"/>
+		<param name="model_path" value=""/>
+		<param name="prototxt_path" value=""/>
+		<param name="class_labels_path" value=""/>
+		<param name="input_blob" value=""/>
+		<param name="output_cvg" value=""/>
+		<param name="output_bbox" value=""/>
+		<param name="overlay_flags" value="box,labels,conf"/>
+		<param name="mean_pixel_value" value="0.0"/>
+		<param name="threshold" value="0.5"/>
+	</node>
+
+</launch>
