@@ -1,5 +1,5 @@
 import rclpy
-from rclpy import Node
+from rclpy.node import Node
 
 from vision_msgs.msg import Detection2DArray
 from sensor_msgs.msg import PointCloud
@@ -13,6 +13,7 @@ class PersonLocatorNode(Node):
         def __init__(self):
             super().__init__('person_locator_node')
 
+            self.declare_parameter('homography_matrix_path', '/app/src/homography_matrix.npy')
             self.homography_matrix_path = self.get_parameter('homography_matrix_path').value
             self.homography_matrix = np.load(self.homography_matrix_path)
 
@@ -32,8 +33,8 @@ class PersonLocatorNode(Node):
         def get_room_locations(self, msg : Detection2DArray):
             person_locations = []
             for detection in msg.detections:
-                x = detection.bbox.center.x
-                y = detection.bbox.center.y
+                x = detection.bbox.center.position.x
+                y = detection.bbox.center.position.y
                 h = detection.bbox.size_y
                 person_locations.append((x, y + h))
 

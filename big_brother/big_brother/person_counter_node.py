@@ -24,7 +24,6 @@ class PersonCounterNode(Node):
         )
 
     def listener_callback(self, msg : PointCloud):
-        self.get_logger().info(f'Counting People...')
         count = 0
         for point in msg.points:
             x, y = point.x, point.y
@@ -39,7 +38,6 @@ class PersonCounterNode(Node):
         msg = Int32()
         msg.data = count
         self.publisher.publish(msg)
-        self.get_logger().info(f'Counted {count} people.')
 
 def main(args=None):
     rclpy.init(args=args)
