@@ -12,7 +12,8 @@ RUN pip3 install \
         openai \
         requests \
         sounddevice \
-        scipy
+        scipy \
+        RPi.GPIO
 
 RUN pip3 install setuptools==58.2.0
 

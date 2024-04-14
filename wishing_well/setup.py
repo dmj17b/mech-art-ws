@@ -21,7 +21,9 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
+            'phone_operator_node = wishing_well.phone_operator_node:main',
             'audio_recording_node = wishing_well.audio_recording_node:main',
+            'audio_play_node = wishing_well.audio_play_node:main',
             'speech2text_node = wishing_well.speech2text_node:main',
             'wish_extraction_node = wishing_well.wish_extraction_node:main',
             'prompt_generation_node = wishing_well.prompt_generation_node:main',

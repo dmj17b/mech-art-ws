@@ -5,6 +5,15 @@ def generate_launch_description():
     return LaunchDescription([
         Node(
             package='wishing_well',
+            executable='phone_operator_node',
+            name='phone_operator_node',
+            output='screen',
+            parameters=[
+                {'device_id': 2}
+            ]
+        ),
+        Node(
+            package='wishing_well',
             executable='audio_recording_node',
             name='audio_recording_node',
             output='screen',

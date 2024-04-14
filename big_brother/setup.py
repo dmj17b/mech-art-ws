@@ -11,6 +11,7 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name, ['launch/big_brother_launch.py']),
+        ('share/' + package_name, ['launch/audio_play_launch.py']),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
@@ -26,6 +27,7 @@ setup(
             'person_locator_node = big_brother.person_locator_node:main',
             'heat_map_node = big_brother.heat_map_node:main',
             'person_counter_node = big_brother.person_counter_node:main',
+            'osc_client_node = big_brother.osc_client_node:main',
         ],
     },
 )
