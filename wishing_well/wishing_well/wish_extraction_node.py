@@ -38,13 +38,12 @@ class WishExtractionNode(Node):
     def listener_callback(self, msg : String):
         self.get_logger().info(f'Extracting Wish...')
         wish = self.get_wishes_from_transcript(msg.data)
-        self.parse_wish(wish)
-        wish_list = self.format_wish_list()
-
-        msg = String()
-        msg.data = ",".join(wish_list)
-        self.publisher.publish(msg)
-        self.get_logger().info(f'Extracted Wish List: {msg.data}')
+        if self.parse_wish(wish):
+            wish_list = self.format_wish_list()
+            msg = String()
+            msg.data = ",".join(wish_list)
+            self.publisher.publish(msg)
+            self.get_logger().info(f'Extracted Wish List: {msg.data}')
 
     def get_wishes_from_transcript(self, transcript: str):
         response = self.openai.chat.completions.create(
@@ -68,7 +67,7 @@ class WishExtractionNode(Node):
 
         if (wish.find("none") != -1) or (len(wish) == 0):
             self.get_logger().info(f'Skipping empty wish...')
-            return
+            return False
         
         self.get_logger().info(f'Extracted Wish: {wish}')
         
@@ -77,6 +76,8 @@ class WishExtractionNode(Node):
             self.wish_list.clear()
         else:
             self.wish_list.append(wish)
+        
+        return True
 
     def format_wish_list(self):
         if (len(self.wish_list) > self.num_wishes):
