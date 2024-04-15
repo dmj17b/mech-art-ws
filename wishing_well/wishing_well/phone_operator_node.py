@@ -5,7 +5,7 @@ from std_msgs.msg import Empty
 from std_msgs.msg import Int16MultiArray
 
 import sounddevice as sd
-# import RPi.GPIO as GPIO
+import RPi.GPIO as GPIO
 
 class PhoneOperatorNode(Node):
                 
