@@ -51,7 +51,7 @@ def generate_launch_description():
             name='image_display_node',
             output='screen',
             parameters=[
-                {'port': 5000}
+                {'port': 4995}
             ]
         ),
         Node(

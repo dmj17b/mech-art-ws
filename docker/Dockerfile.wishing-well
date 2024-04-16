@@ -22,6 +22,7 @@ RUN useradd -m -u 1000 -s /bin/bash user && \
     chown -R user:user /app
 
 RUN usermod -aG audio user
+RUN usermod -aG kmem user
 
 WORKDIR /app
 

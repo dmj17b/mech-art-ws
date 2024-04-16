@@ -9,6 +9,7 @@ docker build -t wishing-well:latest -f docker/Dockerfile.wishing-well "${SCRIPT_
 # Start the Docker container
 docker run -it --rm \
     --privileged \
+    --user root \
     --network host \
     --pid host \
     --ipc host \
