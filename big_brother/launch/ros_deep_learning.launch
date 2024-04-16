@@ -23,4 +23,18 @@
 		<param name="threshold" value="0.5"/>
 	</node>
 
+	<node pkg="ros_deep_learning" exec="segnet" output="screen">
+		<remap from="/segnet/image_in" to="/video_source/raw"/>
+		<param name="model_name" value="fcn-resnet18-mhp-512x320"/>
+		<param name="model_path" value=""/>
+		<param name="prototxt_path" value=""/>
+		<param name="class_labels_path" value=""/>
+		<param name="class_colors_path" value=""/>
+		<param name="input_blob" value=""/>
+		<param name="output_blob" value=""/>
+		<param name="mask_filter" value="linear"/>
+		<param name="overlay_filter" value="linear"/>
+		<param name="overlay_alpha" value="180.0"/>
+	</node>
+
 </launch>

@@ -23,7 +23,7 @@ def generate_launch_description():
             parameters=[
                 {'image_topic': '/video_source/raw'},
                 {'port': 5001},
-                {'update_rate': 30.0}
+                {'update_rate': 10.0}
             ]
         ),
         Node(
@@ -34,7 +34,7 @@ def generate_launch_description():
             parameters=[
                 {'image_topic': '/detectnet/overlay'},
                 {'port': 5002},
-                {'update_rate': 30.0}
+                {'update_rate': 10.0}
             ]
         ),
         Node(
@@ -45,7 +45,18 @@ def generate_launch_description():
             parameters=[
                 {'image_topic': 'heat_map'},
                 {'port': 5003},
-                {'update_rate': 30.0}
+                {'update_rate': 10.0}
+            ]
+        ),
+        Node(
+            package='big_brother',
+            executable='web_image_node',
+            name='web_image_node',
+            output='screen',
+            parameters=[
+                {'image_topic': '/segnet/overlay'},
+                {'port': 5004},
+                {'update_rate': 10.0}
             ]
         ),
         Node(
