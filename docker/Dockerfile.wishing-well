@@ -24,6 +24,8 @@ RUN useradd -m -u 1000 -s /bin/bash user && \
 RUN usermod -aG audio user
 RUN usermod -aG kmem user
 
+EXPOSE 4995
+
 WORKDIR /app
 
 USER user
